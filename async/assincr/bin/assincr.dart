@@ -1,7 +1,17 @@
 import 'package:http/http.dart';
+import 'dart:convert';
 void main(List<String> arguments) {
   requestData();
 }
+
+/*programação assíncrona existe para:
+
+não travar a UI
+não bloquear outras requisições
+permitir várias operações ao mesmo tempo
+reagir a eventos (cliques, respostas, streams)
+
+Nada que dependa de IO deve ser síncrono*/
 
 requestData(){
   String url = "https://gist.githubusercontent.com/RodrigoBerino/e056f8fcb424ceffd620e4c59e3825b3/raw/82cd28caac756b58bac74b43d87db3087a956e5c/accounts.json";
@@ -10,6 +20,11 @@ requestData(){
   futureResponse.then((Response response) {
     print(response);
     print(response.body);
+    List<dynamic> listAccounts = json.decode(response.body); //string json to dart object
+    Map<String, dynamic> mapCarla = listAccounts.firstWhere(
+      (element) => element ["name"] == "Carla",
+    );
+    print(mapCarla["balance"]);
   },);
-}
 
+}
