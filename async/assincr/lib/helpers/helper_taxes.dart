@@ -6,7 +6,17 @@ double calculateTaxesByAccount({
 }) {
   if (amount < 5000) return 0;
 
-  if (sender.accountType.toUpperCase() == 'AMBROSIA') {
-    
+  if (sender.accountType != null){
+    if (sender.accountType!.toUpperCase() == "AMBROSIA"){
+      return amount * 0.005;
+    } else if (sender.accountType!.toUpperCase() == "CANJICA"){
+      return amount * 0.033;
+    } else if (sender.accountType!.toUpperCase() == "PUDIM"){
+      return amount * 0.0025;
+    } else {
+      return amount * 0.0001;
+    }
+  } else {
+    return 0;
   }
 }
