@@ -1,12 +1,12 @@
-import 'dart:async';
 
-import 'package:assincr/apikey.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
-
+import 'package:assincr/screens/account_screen.dart';
 
 
 void main(List<String> arguments) {
+
+  AccountScreen accountScreen = AccountScreen();
+  accountScreen.initializeStream();
+  accountScreen.runChatBot();
   //StreamSubscription streamSubscription = streamController.stream.listen((String info) {
   //    print(info);
   //  },);
